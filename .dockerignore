@@ -1,0 +1,28 @@
+# git
+.git
+.gitattributes
+.gitignore
+
+# Docker
+.dockerignore
+Dockerfile
+
+# Common
+README.md
+CHANGELOG.md
+
+# Python
+*.egg
+*.egg-info/
+.env/
+.venv/
+build/
+dist/
+sdist/
+venv/
+
+# Ruff
+.ruff_cache/
+
+# JetBrains
+.idea
