@@ -2,10 +2,12 @@
 .git
 .gitattributes
 .gitignore
+.github/
 
 # Docker
 .dockerignore
 Dockerfile
+Dockerfile.*
 
 # Common
 README.md
@@ -18,6 +20,7 @@ CHANGELOG.md
 .venv/
 build/
 dist/
+out/
 sdist/
 venv/
 

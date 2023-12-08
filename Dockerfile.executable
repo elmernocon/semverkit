@@ -1,0 +1,13 @@
+FROM python:3.11-slim-bullseye AS builder
+RUN apt update && \
+    apt install --yes binutils
+WORKDIR /stage
+COPY . .
+RUN pip install . && \
+    pip install pyinstaller
+RUN echo "from semverkit import run; run()" > entrypoint.py && \
+    pyinstaller entrypoint.py --noconfirm --clean --onefile --name semverkite && \
+    chmod +x dist/semverkite
+
+FROM scratch AS exporter
+COPY --from=builder /stage/dist/semverkite /
