@@ -12,8 +12,8 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v3
-      - name: Setup QEMU
       # GitHub Action to install QEMU static binaries.
+      - name: Setup QEMU
         id: setup-qemu
         uses: docker/setup-qemu-action@v3
       # This action will create and boot a builder that can be used in the following steps of your workflow if you're using Buildx or the build-push action.
