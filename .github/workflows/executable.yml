@@ -1,0 +1,28 @@
+name: Upload Executable to GitHub Release
+on:
+  release:
+    types: [ published ]
+jobs:
+  build-and-upload:
+    name: Build Executable and Upload to GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v3
+      - name: Build Executable
+        id: build-executable
+        run: |
+          make build-executable
+      # This GitHub Action (written in JavaScript) wraps the GitHub Release API, specifically the Upload a Release Asset endpoint, to allow you to leverage GitHub Actions to upload release assets.
+      - name: Upload Executable
+        id: upload-executable
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./out/semverkite
+          asset_name: semverkite
+          asset_content_type: application/octet-stream
